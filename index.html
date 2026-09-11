@@ -142,6 +142,50 @@
   .id-card .fig .v{ font-size: 1.35rem; font-weight: 500; }
   .id-card .fig .l{ font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
+  /* ---------- condensed statements ---------- */
+  .statement-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .statement-card{ background: var(--surface); padding: 22px 24px; }
+  .statement-card .st-head{ display:flex; align-items:center; gap:8px; margin-bottom: 18px; }
+  .statement-card .st-head .dot{ width: 10px; height: 10px; border-radius: 50%; }
+  .statement-card.a .dot{ background: var(--company-a); }
+  .statement-card.b .dot{ background: var(--company-b); }
+  .statement-card .st-head b{ font-size: 0.92rem; }
+  .stmt-group{ margin-bottom: 18px; }
+  .stmt-group:last-child{ margin-bottom: 0; }
+  .stmt-group .sg-title{
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); margin-bottom: 8px; font-weight: 600;
+  }
+  .stmt-row{
+    display:flex; justify-content: space-between; align-items: baseline;
+    padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 0.85rem;
+  }
+  .stmt-row:last-child{ border-bottom: none; }
+  .stmt-row .sl{ color: var(--ink-2); }
+  .stmt-row .sv{ font-weight: 500; }
+  .stmt-row.total{ border-top: 1px solid var(--ink); border-bottom: none; margin-top: 4px; padding-top: 8px; font-weight: 600; }
+
+  /* ---------- DuPont breakdown ---------- */
+  .dupont-wrap{ margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .dupont-wrap .dp-title{ font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+  .dupont-wrap .dp-sub{ font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; }
+  .dupont-row{ display:flex; align-items:center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; font-size: 0.9rem; }
+  .dupont-row:last-child{ margin-bottom: 0; }
+  .dupont-row .dp-co{ display:flex; align-items:center; gap:6px; width: 150px; flex-shrink:0; font-size: 0.85rem; color: var(--ink-2); }
+  .dupont-row .dp-co .dot{ width: 8px; height: 8px; border-radius: 2px; }
+  .dupont-row .dp-co .dot.a{ background: var(--company-a); }
+  .dupont-row .dp-co .dot.b{ background: var(--company-b); }
+  .dupont-row .dp-term{ font-weight: 500; }
+  .dupont-row .dp-op{ color: var(--muted); }
+  .dupont-row .dp-eq{ color: var(--muted); font-weight: 600; }
+  .dupont-row .dp-result{ font-weight: 600; }
+
   /* ---------- sections ---------- */
   section{ margin-bottom: 52px; }
   .section-head{
@@ -257,7 +301,9 @@
   [data-tip]:hover .tooltip{ opacity: 1; }
 
   @media (max-width: 640px){
-    .identity-strip, .tile-grid, .stress-grid{ grid-template-columns: 1fr; }
+    .identity-strip, .tile-grid, .stress-grid, .statement-grid{ grid-template-columns: 1fr; }
+    .dupont-row{ align-items: flex-start; }
+    .dupont-row .dp-co{ width: 100%; margin-bottom: 4px; }
     .masthead h1{ font-size: 1.7rem; }
     .bar-val{ width: 60px; }
   }
@@ -303,6 +349,63 @@
     </div>
   </div>
 
+  <section id="statements">
+    <div class="section-head">
+      <h2>Financial statements</h2>
+      <span class="hint">condensed &middot; &#8377; crore</span>
+    </div>
+    <div class="statement-grid">
+      <div class="statement-card a">
+        <div class="st-head"><span class="dot"></span><b>Maruti Suzuki</b></div>
+        <div class="stmt-group">
+          <div class="sg-title">Income statement</div>
+          <div class="stmt-row"><span class="sl">Revenue</span><span class="sv num">1,41,858</span></div>
+          <div class="stmt-row"><span class="sl">Total expenses</span><span class="sv num">1,23,232</span></div>
+          <div class="stmt-row"><span class="sl">Operating profit</span><span class="sv num">18,626</span></div>
+          <div class="stmt-row"><span class="sl">Other income</span><span class="sv num">4,248</span></div>
+          <div class="stmt-row"><span class="sl">Interest</span><span class="sv num">194</span></div>
+          <div class="stmt-row"><span class="sl">Depreciation</span><span class="sv num">5,256</span></div>
+          <div class="stmt-row"><span class="sl">Profit before tax</span><span class="sv num">17,424</span></div>
+          <div class="stmt-row total"><span class="sl">Net profit</span><span class="sv num">13,488</span></div>
+        </div>
+        <div class="stmt-group">
+          <div class="sg-title">Balance sheet</div>
+          <div class="stmt-row"><span class="sl">Current assets</span><span class="sv num">22,634</span></div>
+          <div class="stmt-row"><span class="sl">&nbsp;&nbsp;of which cash</span><span class="sv num">2,660</span></div>
+          <div class="stmt-row"><span class="sl">&nbsp;&nbsp;of which inventory</span><span class="sv num">5,318</span></div>
+          <div class="stmt-row"><span class="sl">Current liabilities</span><span class="sv num">25,952</span></div>
+          <div class="stmt-row"><span class="sl">Total debt</span><span class="sv num">239</span></div>
+          <div class="stmt-row"><span class="sl">Total equity</span><span class="sv num">85,636</span></div>
+          <div class="stmt-row total"><span class="sl">Total assets</span><span class="sv num">1,15,351</span></div>
+        </div>
+      </div>
+      <div class="statement-card b">
+        <div class="st-head"><span class="dot"></span><b>Mahindra &amp; Mahindra</b></div>
+        <div class="stmt-group">
+          <div class="sg-title">Income statement</div>
+          <div class="stmt-row"><span class="sl">Revenue</span><span class="sv num">1,39,078</span></div>
+          <div class="stmt-row"><span class="sl">Total expenses</span><span class="sv num">1,14,186</span></div>
+          <div class="stmt-row"><span class="sl">Operating profit</span><span class="sv num">24,892</span></div>
+          <div class="stmt-row"><span class="sl">Other income</span><span class="sv num">3,298</span></div>
+          <div class="stmt-row"><span class="sl">Interest</span><span class="sv num">7,488</span></div>
+          <div class="stmt-row"><span class="sl">Depreciation</span><span class="sv num">4,724</span></div>
+          <div class="stmt-row"><span class="sl">Profit before tax</span><span class="sv num">15,978</span></div>
+          <div class="stmt-row total"><span class="sl">Net profit</span><span class="sv num">12,270</span></div>
+        </div>
+        <div class="stmt-group">
+          <div class="sg-title">Balance sheet</div>
+          <div class="stmt-row"><span class="sl">Current assets</span><span class="sv num">98,266</span></div>
+          <div class="stmt-row"><span class="sl">&nbsp;&nbsp;of which cash</span><span class="sv num">4,530</span></div>
+          <div class="stmt-row"><span class="sl">&nbsp;&nbsp;of which inventory</span><span class="sv num">18,591</span></div>
+          <div class="stmt-row"><span class="sl">Current liabilities</span><span class="sv num">75,546</span></div>
+          <div class="stmt-row"><span class="sl">Total debt</span><span class="sv num">1,09,003</span></div>
+          <div class="stmt-row"><span class="sl">Total equity</span><span class="sv num">77,509</span></div>
+          <div class="stmt-row total"><span class="sl">Total assets</span><span class="sv num">2,36,301</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="profitability">
     <div class="section-head">
       <h2>Profitability</h2>
@@ -313,6 +416,32 @@
       <span class="item"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
     </div>
     <div id="profitability-chart"></div>
+
+    <div class="dupont-wrap">
+      <div class="dp-title">DuPont breakdown of ROE</div>
+      <div class="dp-sub">net margin &times; asset turnover &times; equity multiplier = ROE</div>
+      <div class="dupont-row">
+        <span class="dp-co"><span class="dot a"></span>Maruti Suzuki</span>
+        <span class="dp-term num">9.5%</span><span class="dp-op">&times;</span>
+        <span class="dp-term num">1.23x</span><span class="dp-op">&times;</span>
+        <span class="dp-term num">1.35x</span><span class="dp-eq">=</span>
+        <span class="dp-result num">15.8%</span>
+      </div>
+      <div class="dupont-row">
+        <span class="dp-co"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
+        <span class="dp-term num">8.8%</span><span class="dp-op">&times;</span>
+        <span class="dp-term num">0.59x</span><span class="dp-op">&times;</span>
+        <span class="dp-term num">3.05x</span><span class="dp-eq">=</span>
+        <span class="dp-result num">15.8%</span>
+      </div>
+      <div class="dp-sub" style="margin-top:14px; margin-bottom:0;">
+        Nearly identical ROE, reached two different ways: Maruti gets there mostly
+        through asset efficiency (it turns over its balance sheet 1.2&times; a
+        year), while M&amp;M gets there mostly through leverage (its equity
+        multiplier of 3.05&times; reflects the financial-services book sitting
+        inside the consolidated numbers).
+      </div>
+    </div>
   </section>
 
   <section id="liquidity">
