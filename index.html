@@ -267,36 +267,38 @@
 
   <header class="masthead">
     <div class="kicker">Financial Statement Analyzer &middot; Sample Run</div>
-    <h1>Two filings, one engine: Tata Motors vs. Infosys, FY24</h1>
+    <h1>Two filings, one engine: Maruti Suzuki vs. Mahindra &amp; Mahindra, FY24</h1>
     <p class="dek">
-      A working preview of the analyzer's ratio and stress-test output, run
-      against two real, unrelated FY24 consolidated filings — chosen deliberately
-      because they sit at opposite ends of the cost-structure spectrum, not
-      because either is a stock idea.
+      A second run of the analyzer, this time against two real FY24 consolidated
+      filings from the same sector — a straight peer comparison rather than a
+      contrast. Maruti Suzuki is a focused passenger-vehicle manufacturer;
+      Mahindra &amp; Mahindra's consolidated numbers also carry its large
+      financial-services subsidiary, which shows up clearly in the leverage
+      and liquidity read below.
     </p>
     <div class="filed">
-      <span><b>Tata Motors Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
-      <span><b>Infosys Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
+      <span><b>Maruti Suzuki India Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
+      <span><b>Mahindra &amp; Mahindra Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
     </div>
   </header>
 
   <div class="identity-strip">
     <div class="id-card a">
-      <div class="co-name"><span class="swatch"></span>Tata Motors</div>
+      <div class="co-name"><span class="swatch"></span>Maruti Suzuki</div>
       <div class="co-sector">Automotive manufacturing</div>
       <div class="figs">
-        <div class="fig"><div class="v num">&#8377;4,37,928 cr</div><div class="l">Revenue</div></div>
-        <div class="fig"><div class="v num">&#8377;31,807 cr</div><div class="l">Net income</div></div>
-        <div class="fig"><div class="v num">&#8377;3,70,664 cr</div><div class="l">Total assets</div></div>
+        <div class="fig"><div class="v num">&#8377;1,41,858 cr</div><div class="l">Revenue</div></div>
+        <div class="fig"><div class="v num">&#8377;13,488 cr</div><div class="l">Net income</div></div>
+        <div class="fig"><div class="v num">&#8377;1,15,351 cr</div><div class="l">Total assets</div></div>
       </div>
     </div>
     <div class="id-card b">
-      <div class="co-name"><span class="swatch"></span>Infosys</div>
-      <div class="co-sector">IT services</div>
+      <div class="co-name"><span class="swatch"></span>Mahindra &amp; Mahindra</div>
+      <div class="co-sector">Automotive &amp; farm equipment, plus financial services</div>
       <div class="figs">
-        <div class="fig"><div class="v num">&#8377;1,53,670 cr</div><div class="l">Revenue</div></div>
-        <div class="fig"><div class="v num">&#8377;26,248 cr</div><div class="l">Net income</div></div>
-        <div class="fig"><div class="v num">&#8377;1,37,814 cr</div><div class="l">Total assets</div></div>
+        <div class="fig"><div class="v num">&#8377;1,39,078 cr</div><div class="l">Revenue</div></div>
+        <div class="fig"><div class="v num">&#8377;12,270 cr</div><div class="l">Net income</div></div>
+        <div class="fig"><div class="v num">&#8377;2,36,301 cr</div><div class="l">Total assets</div></div>
       </div>
     </div>
   </div>
@@ -307,8 +309,8 @@
       <span class="hint">percent of revenue / equity / assets</span>
     </div>
     <div class="legend">
-      <span class="item"><span class="dot a"></span>Tata Motors</span>
-      <span class="item"><span class="dot b"></span>Infosys</span>
+      <span class="item"><span class="dot a"></span>Maruti Suzuki</span>
+      <span class="item"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
     </div>
     <div id="profitability-chart"></div>
   </section>
@@ -319,8 +321,8 @@
       <span class="hint">current assets &divide; current liabilities</span>
     </div>
     <div class="legend">
-      <span class="item"><span class="dot a"></span>Tata Motors</span>
-      <span class="item"><span class="dot b"></span>Infosys</span>
+      <span class="item"><span class="dot a"></span>Maruti Suzuki</span>
+      <span class="item"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
     </div>
     <div id="liquidity-chart"></div>
   </section>
@@ -348,8 +350,9 @@
   <div class="disclosure">
     <h3>Methodology &amp; caveats</h3>
     <ol>
-      <li>Figures are the actual consolidated FY24 balance sheet, P&amp;L, and cash flow line items as filed by each company — extracted directly from their published financial statements, not estimated.</li>
-      <li>"COGS" doesn't map cleanly onto a services company: Infosys reports no cost-of-materials line, so its gross margin here approximates cost of revenue as employee costs + subcontractor costs. Treat Infosys's gross margin as directionally indicative, not a like-for-like figure against Tata's.</li>
+      <li>Figures are the actual consolidated FY24 balance sheet and P&amp;L line items as filed by each company — pulled directly from their published financials, not estimated.</li>
+      <li>Mahindra &amp; Mahindra's consolidated filing folds in Mahindra &amp; Mahindra Financial Services, an NBFC lending arm. That's why its current assets, current liabilities, and total debt look unusually large next to a "pure" auto manufacturer like Maruti — the current ratio and debt-to-equity here reflect a manufacturer-plus-lender group, not an apples-to-apples plant comparison.</li>
+      <li>"COGS" is approximated as total reported operating expenses for both companies (neither publishes a clean, directly comparable cost-of-materials-only line at the consolidated level), so gross and operating margin read identically here — treat them as one combined profitability read rather than two distinct figures.</li>
       <li>Peer-relative anomaly detection (z-scores) is intentionally not shown — it requires 3 or more companies to be statistically meaningful and silently misfires with just two.</li>
       <li>This is a mechanics demonstration, not investment research. No forward-looking claims are made about either company.</li>
     </ol>
@@ -359,7 +362,7 @@
 
 <script>
 (function(){
-  const A = 'Tata Motors', B = 'Infosys';
+  const A = 'Maruti Suzuki', B = 'Mahindra & Mahindra';
 
   function bar(container, rows, unit){
     const max = Math.max(...rows.flatMap(r => [r.a, r.b]), 1) * 1.15;
@@ -379,22 +382,22 @@
   }
 
   bar(document.getElementById('profitability-chart'), [
-    { label: 'Gross margin', a: 43.1, b: 38.3 },
-    { label: 'Operating margin', a: 8.7, b: 20.7 },
-    { label: 'Net margin', a: 7.3, b: 17.1 },
-    { label: 'Return on equity (ROE)', a: 34.2, b: 29.7 },
-    { label: 'Return on assets (ROA)', a: 8.6, b: 19.0 },
+    { label: 'Gross margin', a: 13.1, b: 17.9 },
+    { label: 'Operating margin', a: 13.1, b: 17.9 },
+    { label: 'Net margin', a: 9.5, b: 8.8 },
+    { label: 'Return on equity (ROE)', a: 15.8, b: 15.8 },
+    { label: 'Return on assets (ROA)', a: 11.7, b: 5.2 },
   ], '%');
 
   bar(document.getElementById('liquidity-chart'), [
-    { label: 'Current ratio', a: 0.97, b: 2.31 },
-    { label: 'Quick ratio', a: 0.69, b: 2.31 },
+    { label: 'Current ratio', a: 0.87, b: 1.30 },
+    { label: 'Quick ratio', a: 0.67, b: 1.05 },
   ], '&times;'.replace('&times;','x'));
 
   const tiles = [
-    { name: 'Debt-to-equity', a: '1.06x', b: '0.00x' },
-    { name: 'Interest coverage', a: '3.8x', b: '67.5x' },
-    { name: 'Asset turnover', a: '1.18x', b: '1.12x' },
+    { name: 'Debt-to-equity', a: '0.00x', b: '1.41x' },
+    { name: 'Interest coverage', a: '96.0x', b: '3.3x' },
+    { name: 'Asset turnover', a: '1.23x', b: '0.59x' },
   ];
   document.getElementById('tile-grid').innerHTML = tiles.map(t => `
     <div class="tile">
@@ -408,17 +411,17 @@
     {
       cls: 'a', name: A,
       rows: [
-        { label: 'Net margin', from: '7.3%', to: '7.3%', worse: false },
-        { label: 'ROE', from: '34.2%', to: '29.0%', worse: true },
-        { label: 'Interest coverage', from: '3.8x', to: '3.2x', worse: true },
+        { label: 'Net margin', from: '9.5%', to: '9.5%', worse: false },
+        { label: 'ROE', from: '15.8%', to: '13.4%', worse: true },
+        { label: 'Interest coverage', from: '96.0x', to: '81.6x', worse: true },
       ]
     },
     {
       cls: 'b', name: B,
       rows: [
-        { label: 'Net margin', from: '17.1%', to: '17.1%', worse: false },
-        { label: 'ROE', from: '29.7%', to: '25.2%', worse: true },
-        { label: 'Interest coverage', from: '67.5x', to: '57.4x', worse: true },
+        { label: 'Net margin', from: '8.8%', to: '8.8%', worse: false },
+        { label: 'ROE', from: '15.8%', to: '13.5%', worse: true },
+        { label: 'Interest coverage', from: '3.3x', to: '2.8x', worse: true },
       ]
     },
   ];
