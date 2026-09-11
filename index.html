@@ -84,13 +84,13 @@
   }
   .num{ font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
 
-  .wrap{ max-width: 920px; margin: 0 auto; padding: 56px 20px 90px; }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 48px 20px 90px; }
 
   /* ---------- masthead ---------- */
   .masthead{
     border-bottom: 2px solid var(--ink);
-    padding-bottom: 22px;
-    margin-bottom: 40px;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
   }
   .masthead .kicker{
     font-size: 0.75rem;
@@ -100,22 +100,55 @@
     font-weight: 600;
     margin-bottom: 10px;
   }
-  .masthead h1{ font-size: 2.15rem; max-width: 20ch; }
+  .masthead h1{ font-size: 2rem; max-width: 20ch; }
   .masthead .dek{
-    margin-top: 12px;
+    margin-top: 10px;
     color: var(--ink-2);
     max-width: 62ch;
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .masthead .filed{
-    margin-top: 18px;
+    margin-top: 16px;
     display: flex;
     gap: 24px;
     flex-wrap: wrap;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--muted);
   }
   .masthead .filed b{ color: var(--ink-2); font-weight: 600; }
+
+  /* ---------- narrative callout ---------- */
+  .narrative{
+    background: var(--identity-soft);
+    border-left: 3px solid var(--identity);
+    padding: 16px 18px;
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .narrative b{ color: var(--ink); }
+
+  /* ---------- sticky nav ---------- */
+  .subnav{
+    position: sticky; top: 0; z-index: 10;
+    display: flex; gap: 6px; flex-wrap: wrap;
+    background: var(--page);
+    padding: 10px 0;
+    margin-bottom: 34px;
+    border-bottom: 1px solid var(--line);
+  }
+  .subnav a{
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .subnav a:hover{ border-color: var(--identity); color: var(--ink); }
 
   /* ---------- company identity strip ---------- */
   .identity-strip{
@@ -124,11 +157,11 @@
     gap: 2px;
     background: var(--line);
     border: 1px solid var(--line);
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
   .id-card{
     background: var(--surface);
-    padding: 22px 24px;
+    padding: 20px 22px;
   }
   .id-card .swatch{
     width: 10px; height: 10px; border-radius: 50%;
@@ -136,46 +169,70 @@
   }
   .id-card.a .swatch{ background: var(--company-a); }
   .id-card.b .swatch{ background: var(--company-b); }
-  .id-card .co-name{ font-size: 1.05rem; font-weight: 600; font-family: 'Source Serif 4', serif; }
-  .id-card .co-sector{ font-size: 0.78rem; color: var(--muted); margin: 2px 0 16px 18px; }
-  .id-card .figs{ display: flex; gap: 28px; flex-wrap: wrap; }
-  .id-card .fig .v{ font-size: 1.35rem; font-weight: 500; }
-  .id-card .fig .l{ font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .id-card .co-name{ font-size: 1.02rem; font-weight: 600; font-family: 'Source Serif 4', serif; }
+  .id-card .co-sector{ font-size: 0.76rem; color: var(--muted); margin: 2px 0 14px 18px; }
+  .id-card .figs{ display: flex; gap: 24px; flex-wrap: wrap; }
+  .id-card .fig .v{ font-size: 1.25rem; font-weight: 500; }
+  .id-card .fig .l{ font-size: 0.7rem; color: var(--muted); margin-top: 2px; }
 
-  /* ---------- condensed statements ---------- */
+  /* ---------- condensed statements (collapsible) ---------- */
+  details.statements-details{ margin-bottom: 44px; }
+  details.statements-details > summary{
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 0;
+  }
+  details.statements-details > summary::-webkit-details-marker{ display:none; }
+  details.statements-details > summary h2{ font-size: 1.05rem; display:flex; align-items:center; gap:8px; }
+  details.statements-details > summary h2::before{
+    content: '▸';
+    font-size: 0.8rem;
+    color: var(--muted);
+    transition: transform .12s ease;
+    display: inline-block;
+  }
+  details.statements-details[open] > summary h2::before{ transform: rotate(90deg); }
+  details.statements-details > summary .hint{ font-size: 0.78rem; color: var(--muted); }
   .statement-grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2px;
     background: var(--line);
     border: 1px solid var(--line);
+    border-top: none;
   }
-  .statement-card{ background: var(--surface); padding: 22px 24px; }
-  .statement-card .st-head{ display:flex; align-items:center; gap:8px; margin-bottom: 18px; }
+  .statement-card{ background: var(--surface); padding: 20px 22px; }
+  .statement-card .st-head{ display:flex; align-items:center; gap:8px; margin-bottom: 16px; }
   .statement-card .st-head .dot{ width: 10px; height: 10px; border-radius: 50%; }
   .statement-card.a .dot{ background: var(--company-a); }
   .statement-card.b .dot{ background: var(--company-b); }
-  .statement-card .st-head b{ font-size: 0.92rem; }
-  .stmt-group{ margin-bottom: 18px; }
+  .statement-card .st-head b{ font-size: 0.9rem; }
+  .stmt-group{ margin-bottom: 16px; }
   .stmt-group:last-child{ margin-bottom: 0; }
   .stmt-group .sg-title{
-    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--muted); margin-bottom: 8px; font-weight: 600;
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--muted); margin-bottom: 6px; font-weight: 600;
   }
   .stmt-row{
     display:flex; justify-content: space-between; align-items: baseline;
-    padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 0.85rem;
+    padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 0.83rem;
   }
   .stmt-row:last-child{ border-bottom: none; }
   .stmt-row .sl{ color: var(--ink-2); }
   .stmt-row .sv{ font-weight: 500; }
-  .stmt-row.total{ border-top: 1px solid var(--ink); border-bottom: none; margin-top: 4px; padding-top: 8px; font-weight: 600; }
+  .stmt-row.total{ border-top: 1px solid var(--ink); border-bottom: none; margin-top: 4px; padding-top: 6px; font-weight: 600; }
 
   /* ---------- DuPont breakdown ---------- */
-  .dupont-wrap{ margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .dupont-wrap{ margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
   .dupont-wrap .dp-title{ font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
-  .dupont-wrap .dp-sub{ font-size: 0.78rem; color: var(--muted); margin-bottom: 16px; }
-  .dupont-row{ display:flex; align-items:center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; font-size: 0.9rem; }
+  .dupont-wrap .dp-sub{ font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+  .dupont-row{ display:flex; align-items:center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; font-size: 0.9rem; }
   .dupont-row:last-child{ margin-bottom: 0; }
   .dupont-row .dp-co{ display:flex; align-items:center; gap:6px; width: 150px; flex-shrink:0; font-size: 0.85rem; color: var(--ink-2); }
   .dupont-row .dp-co .dot{ width: 8px; height: 8px; border-radius: 2px; }
@@ -187,7 +244,7 @@
   .dupont-row .dp-result{ font-weight: 600; }
 
   /* ---------- sections ---------- */
-  section{ margin-bottom: 52px; }
+  section{ margin-bottom: 44px; scroll-margin-top: 54px; }
   .section-head{
     display: flex;
     align-items: baseline;
@@ -195,25 +252,30 @@
     gap: 16px;
     border-bottom: 1px solid var(--line);
     padding-bottom: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
-  .section-head h2{ font-size: 1.15rem; }
+  .section-head h2{ font-size: 1.05rem; }
   .section-head .hint{ font-size: 0.78rem; color: var(--muted); }
+  .subsection-title{
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--muted); font-weight: 600; margin: 26px 0 14px;
+  }
+  .subsection-title:first-child{ margin-top: 0; }
 
   /* legend */
-  .legend{ display:flex; gap: 18px; margin-bottom: 18px; font-size: 0.82rem; color: var(--ink-2); }
+  .legend{ display:flex; gap: 18px; margin-bottom: 16px; font-size: 0.82rem; color: var(--ink-2); }
   .legend .item{ display:flex; align-items:center; gap: 7px; }
   .legend .dot{ width: 10px; height: 10px; border-radius: 2px; }
   .legend .dot.a{ background: var(--company-a); }
   .legend .dot.b{ background: var(--company-b); }
 
   /* grouped bar rows */
-  .bar-metric{ margin-bottom: 20px; }
+  .bar-metric{ margin-bottom: 18px; }
   .bar-metric:last-child{ margin-bottom: 0; }
-  .bar-metric .mname{ font-size: 0.85rem; color: var(--ink-2); margin-bottom: 7px; font-weight: 500; }
+  .bar-metric .mname{ font-size: 0.85rem; color: var(--ink-2); margin-bottom: 6px; font-weight: 500; }
   .bar-row{ display:flex; align-items:center; gap: 10px; margin-bottom: 5px; }
   .bar-row:last-child{ margin-bottom: 0; }
-  .bar-track{ flex:1; height: 22px; background: var(--surface); border: 1px solid var(--line); position: relative; }
+  .bar-track{ flex:1; height: 20px; background: var(--surface); border: 1px solid var(--line); position: relative; }
   .bar-fill{
     position:absolute; top:2px; bottom:2px; left:2px;
     border-radius: 0 4px 4px 0;
@@ -223,7 +285,7 @@
   .bar-fill.b{ background: var(--company-b); }
   .bar-row:hover .bar-fill{ filter: brightness(1.12); }
   .bar-val{
-    width: 76px; text-align:right; font-size: 0.85rem; flex-shrink:0;
+    width: 74px; text-align:right; font-size: 0.83rem; flex-shrink:0;
   }
 
   /* stat tiles for leverage/efficiency */
@@ -234,15 +296,34 @@
     background: var(--line);
     border: 1px solid var(--line);
   }
-  .tile{ background: var(--surface); padding: 20px; }
-  .tile .tname{ font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
-  .tile .trow{ display:flex; align-items:baseline; justify-content: space-between; margin-bottom: 8px; }
+  .tile{ background: var(--surface); padding: 18px; }
+  .tile .tname{ font-size: 0.76rem; color: var(--muted); margin-bottom: 12px; }
+  .tile .trow{ display:flex; align-items:baseline; justify-content: space-between; margin-bottom: 7px; }
   .tile .trow:last-child{ margin-bottom: 0; }
-  .tile .co{ font-size: 0.8rem; color: var(--ink-2); display:flex; align-items:center; gap:6px; }
+  .tile .co{ font-size: 0.78rem; color: var(--ink-2); display:flex; align-items:center; gap:6px; }
   .tile .co .dot{ width: 8px; height: 8px; border-radius: 2px; }
   .tile .co .dot.a{ background: var(--company-a); }
   .tile .co .dot.b{ background: var(--company-b); }
-  .tile .tv{ font-size: 1.15rem; font-weight: 500; }
+  .tile .tv{ font-size: 1.1rem; font-weight: 500; }
+
+  /* ---------- trend sparklines ---------- */
+  .trend-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .trend-panel .tp-title{ font-size: 0.85rem; font-weight: 500; margin-bottom: 10px; color: var(--ink-2); }
+  .spark-line{ fill: none; stroke-width: 2.25; }
+  .spark-line.a{ stroke: var(--company-a); }
+  .spark-line.b{ stroke: var(--company-b); }
+  .spark-dot.a{ fill: var(--company-a); }
+  .spark-dot.b{ fill: var(--company-b); }
+  .spark-grid-line{ stroke: var(--line); stroke-width: 1; }
+  .spark-zero{ stroke: var(--baseline); stroke-width: 1; stroke-dasharray: 2 3; }
+  .spark-axis-label{ fill: var(--muted); font-size: 9px; font-family: 'IBM Plex Sans', sans-serif; }
+  .spark-val-label{ font-size: 9.5px; font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+  .spark-val-label.a{ fill: var(--company-a); }
+  .spark-val-label.b{ fill: var(--company-b); }
 
   /* stress test */
   .stress-note{
@@ -251,35 +332,48 @@
     padding: 12px 16px;
     font-size: 0.85rem;
     color: var(--ink-2);
-    margin-bottom: 24px;
+    margin-bottom: 22px;
   }
   .stress-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); border: 1px solid var(--line); }
-  .stress-card{ background: var(--surface); padding: 22px 24px; }
-  .stress-card .sc-head{ display:flex; align-items:center; gap:8px; margin-bottom: 18px; }
+  .stress-card{ background: var(--surface); padding: 20px 22px; }
+  .stress-card .sc-head{ display:flex; align-items:center; gap:8px; margin-bottom: 16px; }
   .stress-card .sc-head .dot{ width: 10px; height: 10px; border-radius: 50%; }
   .stress-card.a .dot{ background: var(--company-a); }
   .stress-card.b .dot{ background: var(--company-b); }
-  .stress-card .sc-head b{ font-size: 0.92rem; }
-  .transition-row{ display:flex; align-items:center; gap: 14px; margin-bottom: 16px; }
+  .stress-card .sc-head b{ font-size: 0.9rem; }
+  .transition-row{ display:flex; align-items:center; gap: 14px; margin-bottom: 14px; }
   .transition-row:last-child{ margin-bottom: 0; }
-  .transition-row .metric-label{ width: 130px; font-size: 0.8rem; color: var(--ink-2); flex-shrink:0; }
-  .transition-row .from{ font-size: 1.05rem; color: var(--muted); }
+  .transition-row .metric-label{ width: 128px; font-size: 0.8rem; color: var(--ink-2); flex-shrink:0; }
+  .transition-row .from{ font-size: 1.02rem; color: var(--muted); }
   .transition-row .arrow{ color: var(--muted); font-size: 0.9rem; }
-  .transition-row .to{ font-size: 1.05rem; font-weight: 600; }
+  .transition-row .to{ font-size: 1.02rem; font-weight: 600; }
   .transition-row .to.worse{ color: var(--critical); }
   .transition-row .to.steady{ color: var(--ink); }
 
   /* footnote */
   .disclosure{
     border-top: 1px solid var(--line);
-    padding-top: 22px;
-    font-size: 0.82rem;
+    padding-top: 20px;
+    font-size: 0.8rem;
     color: var(--muted);
   }
-  .disclosure h3{ font-size: 0.85rem; color: var(--ink-2); margin-bottom: 10px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600;}
+  .disclosure h3{ font-size: 0.83rem; color: var(--ink-2); margin-bottom: 10px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600;}
   .disclosure ol{ margin: 0; padding-left: 20px; }
-  .disclosure li{ margin-bottom: 8px; }
+  .disclosure li{ margin-bottom: 7px; }
   .disclosure li:last-child{ margin-bottom: 0; }
+
+  /* print button */
+  .print-btn{
+    font: inherit;
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px;
+    cursor: pointer;
+  }
+  .print-btn:hover{ border-color: var(--identity); color: var(--ink); }
 
   [data-tip]{ position: relative; cursor: default; }
   .tooltip{
@@ -300,12 +394,20 @@
   }
   [data-tip]:hover .tooltip{ opacity: 1; }
 
+  @media print{
+    .subnav, .print-btn{ display: none !important; }
+    details.statements-details{ display: block; }
+    details.statements-details > summary h2::before{ content: ''; }
+  }
+
   @media (max-width: 640px){
-    .identity-strip, .tile-grid, .stress-grid, .statement-grid{ grid-template-columns: 1fr; }
+    .identity-strip, .tile-grid, .stress-grid, .statement-grid, .trend-grid{ grid-template-columns: 1fr; }
+    .trend-grid{ gap: 30px; }
     .dupont-row{ align-items: flex-start; }
     .dupont-row .dp-co{ width: 100%; margin-bottom: 4px; }
-    .masthead h1{ font-size: 1.7rem; }
-    .bar-val{ width: 60px; }
+    .masthead h1{ font-size: 1.55rem; }
+    .bar-val{ width: 58px; }
+    .subnav{ overflow-x: auto; flex-wrap: nowrap; }
   }
 </style>
 
@@ -315,18 +417,38 @@
     <div class="kicker">Financial Statement Analyzer &middot; Sample Run</div>
     <h1>Two filings, one engine: Maruti Suzuki vs. Mahindra &amp; Mahindra, FY24</h1>
     <p class="dek">
-      A second run of the analyzer, this time against two real FY24 consolidated
-      filings from the same sector — a straight peer comparison rather than a
-      contrast. Maruti Suzuki is a focused passenger-vehicle manufacturer;
-      Mahindra &amp; Mahindra's consolidated numbers also carry its large
-      financial-services subsidiary, which shows up clearly in the leverage
-      and liquidity read below.
+      A peer comparison between two real FY24 consolidated filings in the same
+      sector, with five years of history behind each figure. Maruti Suzuki is a
+      focused passenger-vehicle manufacturer; Mahindra &amp; Mahindra's
+      consolidated numbers also carry its financial-services subsidiary, which
+      shows up clearly in the leverage read below.
     </p>
     <div class="filed">
       <span><b>Maruti Suzuki India Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
       <span><b>Mahindra &amp; Mahindra Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
     </div>
   </header>
+
+  <div class="narrative">
+    <b>The read:</b> both automakers clawed back from pandemic-era margin
+    compression, but along different paths. Maruti's net margin nearly doubled
+    from FY22's low of 4.4% to 9.5% in FY24, and its ROE rebounded to 15.8% on a
+    balance sheet that's still almost debt-free. M&amp;M's turnaround is sharper —
+    from a FY20 loss to a FY23 peak ROE of 20.2% — but its FY24 return leans more
+    on leverage (a 3.57&times; equity multiplier, largely the financial-services
+    book) than on margin alone. Under a uniform stress scenario, Maruti's near-zero
+    debt gives it far more room to absorb a bad year: interest coverage stays
+    above 80&times; even after the shock, while M&amp;M's falls toward 2.8&times;.
+  </div>
+
+  <nav class="subnav">
+    <a href="#statements">Statements</a>
+    <a href="#profitability">Profitability</a>
+    <a href="#capital">Liquidity &amp; leverage</a>
+    <a href="#trends">5-year trends</a>
+    <a href="#stress">Stress test</a>
+    <button class="print-btn" onclick="window.print()">Print / save as PDF</button>
+  </nav>
 
   <div class="identity-strip">
     <div class="id-card a">
@@ -349,11 +471,11 @@
     </div>
   </div>
 
-  <section id="statements">
-    <div class="section-head">
+  <details class="statements-details" id="statements">
+    <summary>
       <h2>Financial statements</h2>
-      <span class="hint">condensed &middot; &#8377; crore</span>
-    </div>
+      <span class="hint">condensed &middot; &#8377; crore &middot; click to expand</span>
+    </summary>
     <div class="statement-grid">
       <div class="statement-card a">
         <div class="st-head"><span class="dot"></span><b>Maruti Suzuki</b></div>
@@ -399,12 +521,12 @@
           <div class="stmt-row"><span class="sl">&nbsp;&nbsp;of which inventory</span><span class="sv num">18,591</span></div>
           <div class="stmt-row"><span class="sl">Current liabilities</span><span class="sv num">75,546</span></div>
           <div class="stmt-row"><span class="sl">Total debt</span><span class="sv num">1,09,003</span></div>
-          <div class="stmt-row"><span class="sl">Total equity</span><span class="sv num">77,509</span></div>
+          <div class="stmt-row"><span class="sl">Total equity (parent)</span><span class="sv num">66,190</span></div>
           <div class="stmt-row total"><span class="sl">Total assets</span><span class="sv num">2,36,301</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </details>
 
   <section id="profitability">
     <div class="section-head">
@@ -431,37 +553,50 @@
         <span class="dp-co"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
         <span class="dp-term num">8.8%</span><span class="dp-op">&times;</span>
         <span class="dp-term num">0.59x</span><span class="dp-op">&times;</span>
-        <span class="dp-term num">3.05x</span><span class="dp-eq">=</span>
-        <span class="dp-result num">15.8%</span>
+        <span class="dp-term num">3.57x</span><span class="dp-eq">=</span>
+        <span class="dp-result num">18.5%</span>
       </div>
       <div class="dp-sub" style="margin-top:14px; margin-bottom:0;">
-        Nearly identical ROE, reached two different ways: Maruti gets there mostly
-        through asset efficiency (it turns over its balance sheet 1.2&times; a
-        year), while M&amp;M gets there mostly through leverage (its equity
-        multiplier of 3.05&times; reflects the financial-services book sitting
-        inside the consolidated numbers).
+        Similar margins, different ROE: Maruti gets there mostly through asset
+        efficiency (1.2&times; asset turnover), while M&amp;M gets there mostly
+        through leverage — its equity multiplier of 3.57&times; reflects the
+        financial-services book sitting inside the consolidated numbers.
       </div>
     </div>
   </section>
 
-  <section id="liquidity">
+  <section id="capital">
     <div class="section-head">
-      <h2>Liquidity</h2>
-      <span class="hint">current assets &divide; current liabilities</span>
+      <h2>Liquidity &amp; leverage</h2>
+      <span class="hint">short-term coverage and balance-sheet structure</span>
     </div>
     <div class="legend">
       <span class="item"><span class="dot a"></span>Maruti Suzuki</span>
       <span class="item"><span class="dot b"></span>Mahindra &amp; Mahindra</span>
     </div>
+
+    <div class="subsection-title">Liquidity — current assets &divide; current liabilities</div>
     <div id="liquidity-chart"></div>
+
+    <div class="subsection-title">Leverage &amp; efficiency — figures, not bars (scales differ too widely)</div>
+    <div class="tile-grid" id="tile-grid"></div>
   </section>
 
-  <section id="leverage">
+  <section id="trends">
     <div class="section-head">
-      <h2>Leverage &amp; efficiency</h2>
-      <span class="hint">shown as figures — scales differ too widely for bars</span>
+      <h2>5-year trends</h2>
+      <span class="hint">FY20 &ndash; FY24 &middot; consolidated</span>
     </div>
-    <div class="tile-grid" id="tile-grid"></div>
+    <div class="trend-grid">
+      <div class="trend-panel">
+        <div class="tp-title">Net margin</div>
+        <div id="trend-margin"></div>
+      </div>
+      <div class="trend-panel">
+        <div class="tp-title">Return on equity</div>
+        <div id="trend-roe"></div>
+      </div>
+    </div>
   </section>
 
   <section id="stress">
@@ -479,10 +614,10 @@
   <div class="disclosure">
     <h3>Methodology &amp; caveats</h3>
     <ol>
-      <li>Figures are the actual consolidated FY24 balance sheet and P&amp;L line items as filed by each company — pulled directly from their published financials, not estimated.</li>
-      <li>Mahindra &amp; Mahindra's consolidated filing folds in Mahindra &amp; Mahindra Financial Services, an NBFC lending arm. That's why its current assets, current liabilities, and total debt look unusually large next to a "pure" auto manufacturer like Maruti — the current ratio and debt-to-equity here reflect a manufacturer-plus-lender group, not an apples-to-apples plant comparison.</li>
+      <li>Figures are the actual consolidated FY24 (and, for the trend section, FY20&ndash;FY24) balance sheet and P&amp;L line items as filed by each company — pulled directly from their published financials, not estimated.</li>
+      <li>Mahindra &amp; Mahindra's consolidated filing folds in Mahindra &amp; Mahindra Financial Services, an NBFC lending arm, plus minority interests in partly-owned subsidiaries. Every ROE and equity-multiplier figure here uses equity attributable to M&amp;M's own shareholders (excluding minority interest), matching net profit which is also reported on that basis — using the fully consolidated equity figure instead would understate ROE by roughly 3-4 points. Current assets, current liabilities, and total debt still reflect the full consolidated group, which is why they look unusually large next to a "pure" auto manufacturer like Maruti.</li>
       <li>"COGS" is approximated as total reported operating expenses for both companies (neither publishes a clean, directly comparable cost-of-materials-only line at the consolidated level), so gross and operating margin read identically here — treat them as one combined profitability read rather than two distinct figures.</li>
-      <li>Peer-relative anomaly detection (z-scores) is intentionally not shown — it requires 3 or more companies to be statistically meaningful and silently misfires with just two.</li>
+      <li>Peer-relative anomaly detection (z-scores) is intentionally not shown — it requires 3 or more companies to be statistically meaningful and silently misfires with just two. A bank-specific mode (NPA ratio, CASA ratio, capital adequacy) is also out of scope here — this schema assumes a manufacturing/services cost structure that doesn't map onto a bank's balance sheet.</li>
       <li>This is a mechanics demonstration, not investment research. No forward-looking claims are made about either company.</li>
     </ol>
   </div>
@@ -514,7 +649,7 @@
     { label: 'Gross margin', a: 13.1, b: 17.9 },
     { label: 'Operating margin', a: 13.1, b: 17.9 },
     { label: 'Net margin', a: 9.5, b: 8.8 },
-    { label: 'Return on equity (ROE)', a: 15.8, b: 15.8 },
+    { label: 'Return on equity (ROE)', a: 15.8, b: 18.5 },
     { label: 'Return on assets (ROA)', a: 11.7, b: 5.2 },
   ], '%');
 
@@ -524,7 +659,7 @@
   ], '&times;'.replace('&times;','x'));
 
   const tiles = [
-    { name: 'Debt-to-equity', a: '0.00x', b: '1.41x' },
+    { name: 'Debt-to-equity', a: '0.00x', b: '1.65x' },
     { name: 'Interest coverage', a: '96.0x', b: '3.3x' },
     { name: 'Asset turnover', a: '1.23x', b: '0.59x' },
   ];
@@ -549,7 +684,7 @@
       cls: 'b', name: B,
       rows: [
         { label: 'Net margin', from: '8.8%', to: '8.8%', worse: false },
-        { label: 'ROE', from: '15.8%', to: '13.5%', worse: true },
+        { label: 'ROE', from: '18.5%', to: '15.8%', worse: true },
         { label: 'Interest coverage', from: '3.3x', to: '2.8x', worse: true },
       ]
     },
@@ -567,5 +702,53 @@
       `).join('')}
     </div>
   `).join('');
+
+  // ---- 5-year trend sparklines ----
+  const years = ['FY20', 'FY21', 'FY22', 'FY23', 'FY24'];
+  const marginData = { a: [7.5, 6.2, 4.4, 7.0, 9.5], b: [-0.4, 2.0, 8.0, 9.4, 8.8] };
+  const roeData    = { a: [11.5, 8.4, 7.0, 11.1, 15.8], b: [-0.8, 3.6, 15.4, 20.2, 18.5] };
+
+  function sparkline(container, data, unit){
+    const w = 320, h = 130, padL = 4, padR = 4, padT = 14, padB = 20;
+    const plotW = w - padL - padR, plotH = h - padT - padB;
+    const all = [...data.a, ...data.b];
+    let min = Math.min(...all, 0), max = Math.max(...all);
+    const span = (max - min) || 1;
+    min -= span * 0.12; max += span * 0.12;
+    const x = i => padL + (i / (years.length - 1)) * plotW;
+    const y = v => padT + plotH - ((v - min) / (max - min)) * plotH;
+
+    const gridLines = [0, 0.5, 1].map(f => {
+      const gy = padT + plotH * f;
+      return `<line class="spark-grid-line" x1="${padL}" y1="${gy}" x2="${w-padR}" y2="${gy}"></line>`;
+    }).join('');
+
+    const zeroLine = (min < 0 && max > 0)
+      ? `<line class="spark-zero" x1="${padL}" y1="${y(0)}" x2="${w-padR}" y2="${y(0)}"></line>` : '';
+
+    function path(series, cls){
+      const d = series.map((v,i) => `${i===0?'M':'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+      const dots = series.map((v,i) => `<circle class="spark-dot ${cls}" cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="2.5"></circle>`).join('');
+      const lastLabel = `<text class="spark-val-label ${cls}" x="${x(series.length-1)+5}" y="${y(series[series.length-1])+3}">${series[series.length-1].toFixed(1)}${unit}</text>`;
+      return `<path class="spark-line ${cls}" d="${d}"></path>${dots}${lastLabel}`;
+    }
+
+    const axisLabels = years.map((yr,i) =>
+      `<text class="spark-axis-label" x="${x(i)}" y="${h-4}" text-anchor="${i===0?'start':(i===years.length-1?'end':'middle')}">${yr}</text>`
+    ).join('');
+
+    container.innerHTML = `
+      <svg viewBox="0 0 ${w+34} ${h}" style="width:100%; height:auto; overflow:visible;">
+        ${gridLines}
+        ${zeroLine}
+        ${path(data.a, 'a')}
+        ${path(data.b, 'b')}
+        ${axisLabels}
+      </svg>
+    `;
+  }
+
+  sparkline(document.getElementById('trend-margin'), marginData, '%');
+  sparkline(document.getElementById('trend-roe'), roeData, '%');
 })();
 </script>
