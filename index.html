@@ -1,0 +1,439 @@
+<title>Two Filings, One Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --surface-raised: #ffffff;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --line: #e1e0d9;
+    --baseline: #c3c2b7;
+    --identity: #1b2a4a;
+    --identity-soft: #e8ebf1;
+    --company-a: #2a78d6;
+    --company-a-soft: #e4eefb;
+    --company-b: #eb6834;
+    --company-b-soft: #fdece2;
+    --good: #0ca30c;
+    --critical: #d03b3b;
+    --shadow: rgba(11,11,11,0.08);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --surface-raised: #212120;
+      --ink: #ffffff;
+      --ink-2: #c3c2b7;
+      --muted: #8f8d87;
+      --line: #2c2c2a;
+      --baseline: #383835;
+      --identity: #9db1dd;
+      --identity-soft: #1c2740;
+      --company-a: #3987e5;
+      --company-a-soft: #16283f;
+      --company-b: #d95926;
+      --company-b-soft: #3a2318;
+      --good: #0ca30c;
+      --critical: #e66767;
+      --shadow: rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-raised: #212120;
+    --ink: #ffffff;
+    --ink-2: #c3c2b7;
+    --muted: #8f8d87;
+    --line: #2c2c2a;
+    --baseline: #383835;
+    --identity: #9db1dd;
+    --identity-soft: #1c2740;
+    --company-a: #3987e5;
+    --company-a-soft: #16283f;
+    --company-b: #d95926;
+    --company-b-soft: #3a2318;
+    --good: #0ca30c;
+    --critical: #e66767;
+    --shadow: rgba(0,0,0,0.4);
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  h1,h2,h3{
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .num{ font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+
+  .wrap{ max-width: 920px; margin: 0 auto; padding: 56px 20px 90px; }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 22px;
+    margin-bottom: 40px;
+  }
+  .masthead .kicker{
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--identity);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .masthead h1{ font-size: 2.15rem; max-width: 20ch; }
+  .masthead .dek{
+    margin-top: 12px;
+    color: var(--ink-2);
+    max-width: 62ch;
+    font-size: 1rem;
+  }
+  .masthead .filed{
+    margin-top: 18px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .masthead .filed b{ color: var(--ink-2); font-weight: 600; }
+
+  /* ---------- company identity strip ---------- */
+  .identity-strip{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .id-card{
+    background: var(--surface);
+    padding: 22px 24px;
+  }
+  .id-card .swatch{
+    width: 10px; height: 10px; border-radius: 50%;
+    display: inline-block; margin-right: 8px; position: relative; top: -1px;
+  }
+  .id-card.a .swatch{ background: var(--company-a); }
+  .id-card.b .swatch{ background: var(--company-b); }
+  .id-card .co-name{ font-size: 1.05rem; font-weight: 600; font-family: 'Source Serif 4', serif; }
+  .id-card .co-sector{ font-size: 0.78rem; color: var(--muted); margin: 2px 0 16px 18px; }
+  .id-card .figs{ display: flex; gap: 28px; flex-wrap: wrap; }
+  .id-card .fig .v{ font-size: 1.35rem; font-weight: 500; }
+  .id-card .fig .l{ font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+  /* ---------- sections ---------- */
+  section{ margin-bottom: 52px; }
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 22px;
+  }
+  .section-head h2{ font-size: 1.15rem; }
+  .section-head .hint{ font-size: 0.78rem; color: var(--muted); }
+
+  /* legend */
+  .legend{ display:flex; gap: 18px; margin-bottom: 18px; font-size: 0.82rem; color: var(--ink-2); }
+  .legend .item{ display:flex; align-items:center; gap: 7px; }
+  .legend .dot{ width: 10px; height: 10px; border-radius: 2px; }
+  .legend .dot.a{ background: var(--company-a); }
+  .legend .dot.b{ background: var(--company-b); }
+
+  /* grouped bar rows */
+  .bar-metric{ margin-bottom: 20px; }
+  .bar-metric:last-child{ margin-bottom: 0; }
+  .bar-metric .mname{ font-size: 0.85rem; color: var(--ink-2); margin-bottom: 7px; font-weight: 500; }
+  .bar-row{ display:flex; align-items:center; gap: 10px; margin-bottom: 5px; }
+  .bar-row:last-child{ margin-bottom: 0; }
+  .bar-track{ flex:1; height: 22px; background: var(--surface); border: 1px solid var(--line); position: relative; }
+  .bar-fill{
+    position:absolute; top:2px; bottom:2px; left:2px;
+    border-radius: 0 4px 4px 0;
+    transition: filter .12s ease;
+  }
+  .bar-fill.a{ background: var(--company-a); }
+  .bar-fill.b{ background: var(--company-b); }
+  .bar-row:hover .bar-fill{ filter: brightness(1.12); }
+  .bar-val{
+    width: 76px; text-align:right; font-size: 0.85rem; flex-shrink:0;
+  }
+
+  /* stat tiles for leverage/efficiency */
+  .tile-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .tile{ background: var(--surface); padding: 20px; }
+  .tile .tname{ font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+  .tile .trow{ display:flex; align-items:baseline; justify-content: space-between; margin-bottom: 8px; }
+  .tile .trow:last-child{ margin-bottom: 0; }
+  .tile .co{ font-size: 0.8rem; color: var(--ink-2); display:flex; align-items:center; gap:6px; }
+  .tile .co .dot{ width: 8px; height: 8px; border-radius: 2px; }
+  .tile .co .dot.a{ background: var(--company-a); }
+  .tile .co .dot.b{ background: var(--company-b); }
+  .tile .tv{ font-size: 1.15rem; font-weight: 500; }
+
+  /* stress test */
+  .stress-note{
+    background: var(--identity-soft);
+    border-left: 3px solid var(--identity);
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    margin-bottom: 24px;
+  }
+  .stress-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); border: 1px solid var(--line); }
+  .stress-card{ background: var(--surface); padding: 22px 24px; }
+  .stress-card .sc-head{ display:flex; align-items:center; gap:8px; margin-bottom: 18px; }
+  .stress-card .sc-head .dot{ width: 10px; height: 10px; border-radius: 50%; }
+  .stress-card.a .dot{ background: var(--company-a); }
+  .stress-card.b .dot{ background: var(--company-b); }
+  .stress-card .sc-head b{ font-size: 0.92rem; }
+  .transition-row{ display:flex; align-items:center; gap: 14px; margin-bottom: 16px; }
+  .transition-row:last-child{ margin-bottom: 0; }
+  .transition-row .metric-label{ width: 130px; font-size: 0.8rem; color: var(--ink-2); flex-shrink:0; }
+  .transition-row .from{ font-size: 1.05rem; color: var(--muted); }
+  .transition-row .arrow{ color: var(--muted); font-size: 0.9rem; }
+  .transition-row .to{ font-size: 1.05rem; font-weight: 600; }
+  .transition-row .to.worse{ color: var(--critical); }
+  .transition-row .to.steady{ color: var(--ink); }
+
+  /* footnote */
+  .disclosure{
+    border-top: 1px solid var(--line);
+    padding-top: 22px;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .disclosure h3{ font-size: 0.85rem; color: var(--ink-2); margin-bottom: 10px; font-family: 'IBM Plex Sans', sans-serif; font-weight: 600;}
+  .disclosure ol{ margin: 0; padding-left: 20px; }
+  .disclosure li{ margin-bottom: 8px; }
+  .disclosure li:last-child{ margin-bottom: 0; }
+
+  [data-tip]{ position: relative; cursor: default; }
+  .tooltip{
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--ink);
+    color: var(--page);
+    font-size: 0.72rem;
+    padding: 4px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .1s ease;
+    z-index: 5;
+  }
+  [data-tip]:hover .tooltip{ opacity: 1; }
+
+  @media (max-width: 640px){
+    .identity-strip, .tile-grid, .stress-grid{ grid-template-columns: 1fr; }
+    .masthead h1{ font-size: 1.7rem; }
+    .bar-val{ width: 60px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Financial Statement Analyzer &middot; Sample Run</div>
+    <h1>Two filings, one engine: Tata Motors vs. Infosys, FY24</h1>
+    <p class="dek">
+      A working preview of the analyzer's ratio and stress-test output, run
+      against two real, unrelated FY24 consolidated filings — chosen deliberately
+      because they sit at opposite ends of the cost-structure spectrum, not
+      because either is a stock idea.
+    </p>
+    <div class="filed">
+      <span><b>Tata Motors Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
+      <span><b>Infosys Ltd</b> &middot; consolidated &middot; year ended Mar 31, 2024 &middot; &#8377; crore</span>
+    </div>
+  </header>
+
+  <div class="identity-strip">
+    <div class="id-card a">
+      <div class="co-name"><span class="swatch"></span>Tata Motors</div>
+      <div class="co-sector">Automotive manufacturing</div>
+      <div class="figs">
+        <div class="fig"><div class="v num">&#8377;4,37,928 cr</div><div class="l">Revenue</div></div>
+        <div class="fig"><div class="v num">&#8377;31,807 cr</div><div class="l">Net income</div></div>
+        <div class="fig"><div class="v num">&#8377;3,70,664 cr</div><div class="l">Total assets</div></div>
+      </div>
+    </div>
+    <div class="id-card b">
+      <div class="co-name"><span class="swatch"></span>Infosys</div>
+      <div class="co-sector">IT services</div>
+      <div class="figs">
+        <div class="fig"><div class="v num">&#8377;1,53,670 cr</div><div class="l">Revenue</div></div>
+        <div class="fig"><div class="v num">&#8377;26,248 cr</div><div class="l">Net income</div></div>
+        <div class="fig"><div class="v num">&#8377;1,37,814 cr</div><div class="l">Total assets</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section id="profitability">
+    <div class="section-head">
+      <h2>Profitability</h2>
+      <span class="hint">percent of revenue / equity / assets</span>
+    </div>
+    <div class="legend">
+      <span class="item"><span class="dot a"></span>Tata Motors</span>
+      <span class="item"><span class="dot b"></span>Infosys</span>
+    </div>
+    <div id="profitability-chart"></div>
+  </section>
+
+  <section id="liquidity">
+    <div class="section-head">
+      <h2>Liquidity</h2>
+      <span class="hint">current assets &divide; current liabilities</span>
+    </div>
+    <div class="legend">
+      <span class="item"><span class="dot a"></span>Tata Motors</span>
+      <span class="item"><span class="dot b"></span>Infosys</span>
+    </div>
+    <div id="liquidity-chart"></div>
+  </section>
+
+  <section id="leverage">
+    <div class="section-head">
+      <h2>Leverage &amp; efficiency</h2>
+      <span class="hint">shown as figures — scales differ too widely for bars</span>
+    </div>
+    <div class="tile-grid" id="tile-grid"></div>
+  </section>
+
+  <section id="stress">
+    <div class="section-head">
+      <h2>Stress test</h2>
+      <span class="hint">15% revenue decline &middot; 200bps margin compression</span>
+    </div>
+    <div class="stress-note">
+      Same shock, applied uniformly to both filings. The question isn't who has
+      the better base case — it's who has more room to absorb a bad year.
+    </div>
+    <div class="stress-grid" id="stress-grid"></div>
+  </section>
+
+  <div class="disclosure">
+    <h3>Methodology &amp; caveats</h3>
+    <ol>
+      <li>Figures are the actual consolidated FY24 balance sheet, P&amp;L, and cash flow line items as filed by each company — extracted directly from their published financial statements, not estimated.</li>
+      <li>"COGS" doesn't map cleanly onto a services company: Infosys reports no cost-of-materials line, so its gross margin here approximates cost of revenue as employee costs + subcontractor costs. Treat Infosys's gross margin as directionally indicative, not a like-for-like figure against Tata's.</li>
+      <li>Peer-relative anomaly detection (z-scores) is intentionally not shown — it requires 3 or more companies to be statistically meaningful and silently misfires with just two.</li>
+      <li>This is a mechanics demonstration, not investment research. No forward-looking claims are made about either company.</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  const A = 'Tata Motors', B = 'Infosys';
+
+  function bar(container, rows, unit){
+    const max = Math.max(...rows.flatMap(r => [r.a, r.b]), 1) * 1.15;
+    container.innerHTML = rows.map(r => `
+      <div class="bar-metric">
+        <div class="mname">${r.label}</div>
+        <div class="bar-row" data-tip title="">
+          <div class="bar-track"><div class="bar-fill a" style="width:${Math.max(2,(r.a/max*100))}%"></div></div>
+          <div class="bar-val num">${r.a.toFixed(1)}${unit}</div>
+        </div>
+        <div class="bar-row" data-tip title="">
+          <div class="bar-track"><div class="bar-fill b" style="width:${Math.max(2,(r.b/max*100))}%"></div></div>
+          <div class="bar-val num">${r.b.toFixed(1)}${unit}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  bar(document.getElementById('profitability-chart'), [
+    { label: 'Gross margin', a: 43.1, b: 38.3 },
+    { label: 'Operating margin', a: 8.7, b: 20.7 },
+    { label: 'Net margin', a: 7.3, b: 17.1 },
+    { label: 'Return on equity (ROE)', a: 34.2, b: 29.7 },
+    { label: 'Return on assets (ROA)', a: 8.6, b: 19.0 },
+  ], '%');
+
+  bar(document.getElementById('liquidity-chart'), [
+    { label: 'Current ratio', a: 0.97, b: 2.31 },
+    { label: 'Quick ratio', a: 0.69, b: 2.31 },
+  ], '&times;'.replace('&times;','x'));
+
+  const tiles = [
+    { name: 'Debt-to-equity', a: '1.06x', b: '0.00x' },
+    { name: 'Interest coverage', a: '3.8x', b: '67.5x' },
+    { name: 'Asset turnover', a: '1.18x', b: '1.12x' },
+  ];
+  document.getElementById('tile-grid').innerHTML = tiles.map(t => `
+    <div class="tile">
+      <div class="tname">${t.name}</div>
+      <div class="trow"><span class="co"><span class="dot a"></span>${A}</span><span class="tv num">${t.a}</span></div>
+      <div class="trow"><span class="co"><span class="dot b"></span>${B}</span><span class="tv num">${t.b}</span></div>
+    </div>
+  `).join('');
+
+  const stress = [
+    {
+      cls: 'a', name: A,
+      rows: [
+        { label: 'Net margin', from: '7.3%', to: '7.3%', worse: false },
+        { label: 'ROE', from: '34.2%', to: '29.0%', worse: true },
+        { label: 'Interest coverage', from: '3.8x', to: '3.2x', worse: true },
+      ]
+    },
+    {
+      cls: 'b', name: B,
+      rows: [
+        { label: 'Net margin', from: '17.1%', to: '17.1%', worse: false },
+        { label: 'ROE', from: '29.7%', to: '25.2%', worse: true },
+        { label: 'Interest coverage', from: '67.5x', to: '57.4x', worse: true },
+      ]
+    },
+  ];
+  document.getElementById('stress-grid').innerHTML = stress.map(s => `
+    <div class="stress-card ${s.cls}">
+      <div class="sc-head"><span class="dot"></span><b>${s.name}</b></div>
+      ${s.rows.map(r => `
+        <div class="transition-row">
+          <span class="metric-label">${r.label}</span>
+          <span class="from num">${r.from}</span>
+          <span class="arrow">&rarr;</span>
+          <span class="to num ${r.worse ? 'worse' : 'steady'}">${r.to}</span>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+})();
+</script>
